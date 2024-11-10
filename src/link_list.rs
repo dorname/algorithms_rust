@@ -1,17 +1,19 @@
+type Node<T> = Option<Box<LinkListNode<T>>>;
+
 // 定义节点的数据结构
 #[derive(Debug)]
 struct LinkListNode<T> {
     // 存储任意类型的数据
     data: T,
     // 指向下一个节点的 Option<Box<Node<T>>>，使用 Box 进行堆内存分配，Option 来表示节点可能为空。
-    next: Option<Box<LinkListNode<T>>>,
+    next: Node<T>,
 }
 
 // 定义链表的数据结构
 #[derive(Debug)]
 struct LinkList<T> {
     // 链表的头节点
-    head: Option<Box<LinkListNode<T>>>,
+    head: Node<T>,
 }
 impl<T> LinkList<T> {
     // 创建一个空的链表
