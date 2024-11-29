@@ -1,4 +1,7 @@
+use std::collections::btree_map::{Keys, Values};
+
 /// 定义B+树的节点类型
+#[derive(Debug)]
 enum NodeType {
     // 叶子节点
     Leaf,
@@ -7,6 +10,7 @@ enum NodeType {
 }
 
 // 定义B+树节点的结构体
+#[derive(Debug)]
 pub struct BPTreeNode<K, V> {
     // 节点类型
     node_type: NodeType,
@@ -20,18 +24,39 @@ pub struct BPTreeNode<K, V> {
     next: Option<Box<BPTreeNode<K, V>>>,
 }
 
+impl<K, V> BPTreeNode<K, V> {
+    fn new(node_type: NodeType, keys: Vec<K>, values: vec![]) -> Self {
+        BPTreeNode {
+            node_type: NodeType::Leaf,
+            keys: Vec::new(),
+            values: Vec::new(),
+            childrens: Vec::new(),
+            next: None,
+        }
+    }
+}
+
 // B+树结构体
+#[derive(Debug)]
 pub struct BPTree<K, V> {
     // 根节点
     root: Option<Box<BPTreeNode<K, V>>>,
     // 树深度--阶数
-    level: usize,
+    limit: usize,
+}
+
+impl<K, V> BPTree<K, V> {
+    fn new(limit: usize) -> Self {
+        BPTree { root: None, limit }
+    }
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
     fn init_test() {
-        // let mut tree = BPTree::new(3);
+        let tree: BPTree<u16, u16> = BPTree::new(3);
+        println!("{:?}", tree);
     }
 }
