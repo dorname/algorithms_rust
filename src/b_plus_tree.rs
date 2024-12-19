@@ -25,7 +25,7 @@ pub struct BPTreeNode<K, V> {
 }
 
 impl<K, V> BPTreeNode<K, V> {
-    fn new(node_type: NodeType, keys: Vec<K>, values: vec![]) -> Self {
+    fn new(node_type: NodeType, keys: Vec<K>) -> Self {
         BPTreeNode {
             node_type: NodeType::Leaf,
             keys: Vec::new(),
