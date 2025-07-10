@@ -37,6 +37,8 @@ impl<T> LinkList<T> {
 
         // 将新节点设置为链表的头节点
         self.head = Some(new_node);
+
+        self.lenght += 1;
     }
 
     // 链表尾部插入节点,因为链表不是数组，所以需要先定位到最后一个节点，然后再插入。
@@ -56,6 +58,7 @@ impl<T> LinkList<T> {
         // Set the new node as the next of the last node
         // 将新节点设置为最后一个节点的下一个节点
         *tail_ref = Some(new_node);
+        self.lenght += 1;
     }
 
     // 弹出节点
@@ -66,6 +69,7 @@ impl<T> LinkList<T> {
                 // Extract the data from the node
                 // 从节点中提取数据
                 self.head = node.next;
+                self.lenght -= 1;
                 Some(node.data)
             }
             None => None,
@@ -224,9 +228,8 @@ mod link_list_tests {
         list.insert(4, 3);
         assert_eq!(list.len(), 4);
 
-        println!("{:?}", list);
-        list.remove_at(0);
-        println!("{:?}", list);
+        // println!("{:?}", list);
+        list.remove_at(3);
         assert_eq!(list.pop_back(), Some(1))
     }
 }
